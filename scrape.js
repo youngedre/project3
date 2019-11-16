@@ -1,5 +1,11 @@
-var puppeteer = require('puppeteer');
-const SearchTerm = "men's watch";
+const puppeteer = require('puppeteer');
+const mongoose = require('mongoose');
+const db = require("./models/StoreSearch");
+
+
+mongoose.connect("mongodb://localhost/ShoppingDatabase", { useNewUrlParser: true });
+
+const SearchTerm = "stand mixer";
 async function amazonSearch() {
   try{
   const browser = await puppeteer.launch();
@@ -25,7 +31,8 @@ async function walmartSearch() {
   await page.waitFor(750);
   await page.screenshot({path: './screenshots/walmart.png'});
   const items = await page.evaluate(() => {
-    const data = [];
+    const storeSource = 'Walmart';
+    let data = [];
     const titleTextSearch = 'a.product-title-link';
     const priceTextSearch = 'div.product-price-with-fulfillment span.price-main-block span.visuallyhidden';
     const imageTextSearch = 'img';
@@ -34,26 +41,33 @@ async function walmartSearch() {
       title = item.querySelector(titleTextSearch).title.trim();
       price = item.querySelector(priceTextSearch).innerText.trim();
       image = item.querySelector(imageTextSearch).src.trim();
-      sourcePage = "https://walmart.com/"+item.querySelector(titleTextSearch).href.trim();
+      itemLink = "https://walmart.com/"+item.querySelector(titleTextSearch).href.trim();
     }};
     const allItems = document.querySelectorAll('li.u-size-6-12');
     let i=0;
-    for(const a of allItems) {
-      i++;
+    for(a of allItems) {
       grabInfo(a);
-      console.log('title: ',a.title);
+      // console.log('title: ',a.title);
       data.push({
-        count: i,
         title,
         price,
         image,
-        sourcePage
+        itemLink,
+        storeSource 
     });
+    // console.log(data);
   }
   return data;
   });
-  console.log(JSON.stringify(items));
+  console.log(items);
+  items.forEach(element => {
+    console.log("Element test: ", element);
+    try{db.create(element);}
+    catch(err){console.log(err);}
+  });
+  // items.forEach(element => {db.StoreSearch.create(element).then(res => console.log(res)).catch(err => console.log(err));});
+  console.log("Check database");
   await browser.close();
-}catch (err){console.log(err)}}
+}catch (err){console.log(err);}}
 walmartSearch();
-amazonSearch();
+// amazonSearch();
