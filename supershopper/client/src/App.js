@@ -3,8 +3,9 @@ import { Grid, Container, Menu, Image } from 'semantic-ui-react';
 // import SelectedFoods from "./components/SelectedFoods/";
 // import FoodSearch from "./components/FoodSearch/";
 // import logo from "./assets/images/logo.png";
-import LoginForm from "./components/LoginForm"
-import Homepage from "./components/pages/Homepage"
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+import Homepage from "./components/pages/Homepage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
@@ -37,6 +38,7 @@ class App extends Component {
         <div>
         <Route exact path="/" component={LoginForm} />
         <Route exact path="/user" component={Homepage} />
+        <Route exact path="/signup" component={SignupForm} />
         </div>
       </Router>
       // <LoginForm />
