@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import logo from "../../assets/images/logo.png";
+// import {Redirect} from 'react-router-dom'
+
 
 
 class LoginForm extends Component {
@@ -24,21 +27,23 @@ class LoginForm extends Component {
       alert("Fill out your email and password please!");
     } else if (this.state.password.length < 6) {
       alert(
-        `Choose a more secure password` 
+        `Invalid email and/or password` 
       );
+    } else{
+      console.log(`${this.state.email} ${this.state.password}`);
+      this.props.history.push('/user/')
     }
     this.setState({
-      email: "",
       password: ""
     });
-    
+   
   };
   render(){
     return(
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='red' textAlign='center'>
-        <Image src='/logo.png' /> Log-in to your account
+        <Image src={logo} /> Log-in to your account
       </Header>
       <Form size='large'>
         <Segment stacked>
@@ -66,7 +71,7 @@ class LoginForm extends Component {
         </Segment>
       </Form>
       <Message>
-        New to us? <a href='#'>Sign Up</a>
+        New to us? <a href='/signup'>Sign Up</a>
       </Message>
     </Grid.Column>
   </Grid>
