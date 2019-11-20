@@ -14,9 +14,9 @@ const debounce = (fn, delay) => {
   };
 };
 
-class FoodSearch extends React.Component {
+class ItemSearch extends React.Component {
   state = {
-    foods: [],
+    items: [],
     showRemoveIcon: false,
     searchValue: ""
   };
@@ -35,7 +35,7 @@ class FoodSearch extends React.Component {
 
     if (value === "") {
       this.setState({
-        foods: [],
+        items: [],
         showRemoveIcon: false
       });
     } else {
@@ -48,30 +48,29 @@ class FoodSearch extends React.Component {
 
   fetchFoods = (query) => {
     API.search(query, result => {
-      const foods = result.slice(0, MATCHING_ITEM_LIMIT)
-      this.setState({ foods });
+      const items = result.slice(0, MATCHING_ITEM_LIMIT)
+      this.setState({ items });
     });
   }
 
   handleSearchCancel = () => {
     this.setState({
-      foods: [],
+      items: [],
       showRemoveIcon: false,
       searchValue: ""
     });
   };
 
   render() {
-    const { showRemoveIcon, foods } = this.state;
+    const { showRemoveIcon, items } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: "hidden" };
 
-    const foodRows = foods.map((food, idx) => (
-      <Table.Row key={idx} onClick={() => this.props.onFoodClick(food)}>
-        <Table.Cell>{food.description}</Table.Cell>
-        <Table.Cell className="right aligned">{food.kcal}</Table.Cell>
-        <Table.Cell className="right aligned">{food.protein_g}</Table.Cell>
-        <Table.Cell className="right aligned">{Number(food.fat_g).toFixed(2)}</Table.Cell>
-        <Table.Cell className="right aligned">{food.carbohydrate_g}</Table.Cell>
+    const itemRows = items.map((item, idx) => (
+      <Table.Row key={idx} onClick={() => this.props.onFoodClick(item)}>
+        <Table.Cell className="right aligned">{item.title}</Table.Cell>
+        <Table.Cell className="right aligned">{Number(item.price).toFixed(2)}</Table.Cell>
+        <Table.Cell className="right aligned" ><a href={item.itemLink}><img src={item.image} border = '0'/></a></Table.Cell>
+        <Table.Cell className="right aligned">{item.storeSource}</Table.Cell>
       </Table.Row>
     ));
 
@@ -106,14 +105,14 @@ class FoodSearch extends React.Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {foodRows}
+                {itemRows}
               </Table.Body>
             </Table>
           </Card.Content>
           <Card.Content extra>
-            {foodRows.length === 0 && <><Icon name='search' />No Saved Searches</>}
-            {foodRows.length === 1 && <><Icon name='search' />1 Saved Search</>}
-            {foodRows.length > 1 && <><Icon name='search' />{foodRows.length} Saved Searches</>}
+            {itemRows.length === 0 && <><Icon name='search' />No Saved Searches</>}
+            {itemRows.length === 1 && <><Icon name='search' />1 Saved Search</>}
+            {itemRows.length > 1 && <><Icon name='search' />{itemRows.length} Saved Searches</>}
           </Card.Content>
         </Card>
       </>
@@ -121,4 +120,4 @@ class FoodSearch extends React.Component {
   }
 }
 
-export default FoodSearch;
+export default ItemSearch;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Container, Menu, Image } from 'semantic-ui-react';
-import FoodSearch from '../FoodSearch';
+import ItemSearch from '../ItemSearch';
 import SelectedFoods from '../SelectedFoods'
 import logo from '../../assets/images/logo.png'
 
@@ -44,7 +44,7 @@ class Homepage extends Component {
           <Grid divided="vertically">
             <Grid.Row columns="2">
               <Grid.Column>
-                <FoodSearch onFoodClick={this.addFood} />
+                <ItemSearch onFoodClick={this.addFood} />
               </Grid.Column>
               <Grid.Column>
                 <SelectedFoods foods={selectedFoods} onFoodClick={this.removeFoodItem} />
