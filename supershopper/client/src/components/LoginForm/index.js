@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import logo from "../../assets/images/logo.png";
-// import {Redirect} from 'react-router-dom'
+import './style.css'
 
 
 
@@ -40,10 +40,12 @@ class LoginForm extends Component {
   };
   render(){
     return(
+      <div className='container'>
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='red' textAlign='center'>
-        <Image src={logo} /> Log-in to your account
+      <Image src={logo} /><h1>Welcome To Super Shopper</h1>
+      Log-in to your account
       </Header>
       <Form size='large'>
         <Segment stacked>
@@ -74,7 +76,7 @@ class LoginForm extends Component {
         New to us? <a href='/signup'>Sign Up</a>
       </Message>
     </Grid.Column>
-  </Grid>
+  </Grid></div>
     )}
 
 }

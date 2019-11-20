@@ -42,6 +42,7 @@ class SignUpForm extends Component {
   };
   render(){
     return(
+      <div className='container'>
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='red' textAlign='center'>
@@ -87,7 +88,7 @@ class SignUpForm extends Component {
   </Form>
   </Segment>
     </Grid.Column>
-  </Grid>
+  </Grid></div>
     )}
 
 }
