@@ -9,6 +9,7 @@ const express = require('express');
 const morgan = require('morgan');
 const routes = require('./routes');
 const app = express();
+const cron = require('node-cron');
 const PORT = process.env.PORT || 3001;
 
 // Connect to the Mongo DB
@@ -34,6 +35,11 @@ app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======');
 	console.error(err.stack);
 	res.status(500);
+});
+
+cron.schedule("43 20 * * *",function() {
+	console.log("~~~~~~~~~~~~~~~~~~~~");
+	console.log("It is currently 8:30PM");
 });
 
 // Starting Server
