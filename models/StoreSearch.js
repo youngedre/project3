@@ -1,4 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const moment = require("moment");
+
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -23,9 +25,15 @@ var StoreSchema = new Schema({
     required: false
 },
   storeSource: {
-      type: String,
-      required: true
+    type: String,
+    required: true
+  },
+  timeScraped: {
+    type: Date,
+    default: Date.now,
+    expires: '8h'
   }
+
 });
 
 // This creates our model from the above schema, using mongoose's model method

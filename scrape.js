@@ -5,7 +5,7 @@ const db = require("./models/StoreSearch");
 
 mongoose.connect("mongodb://localhost/ShoppingDatabase", { useNewUrlParser: true });
 
-const SearchTerm = "stand mixer";
+const SearchTerm = "mens shoes";
 async function amazonSearch() {
   try{
   const browser = await puppeteer.launch();
@@ -17,7 +17,7 @@ async function amazonSearch() {
   await page.waitFor(750);
   await page.screenshot({path: './screenshots/amazon.png'});
   await browser.close();
-}catch(err){console.log(err)};
+}catch(err){console.log(err);}
 }
 async function walmartSearch() {
   try{
@@ -60,11 +60,12 @@ async function walmartSearch() {
   return data;
   });
   console.log(items);
-  items.forEach(element => {
-    console.log("Element test: ", element);
-    try{db.create(element);}
+
+  for (let k=0; k<Math.min(items.length, 15); k++) {
+    // console.log("Element test: ", element);
+    try{db.create(items[k]);}
     catch(err){console.log(err);}
-  });
+  }
   // items.forEach(element => {db.StoreSearch.create(element).then(res => console.log(res)).catch(err => console.log(err));});
   console.log("Check database");
   await browser.close();
