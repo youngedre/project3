@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const moment = require("moment");
 
 
 // Save a reference to the Schema constructor
@@ -32,6 +31,10 @@ var StoreSchema = new Schema({
     type: Date,
     default: Date.now,
     expires: '8h'
+  },
+  searchedTerm: {
+    type: String,
+    required: true
   }
 
 });

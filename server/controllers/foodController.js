@@ -1,25 +1,34 @@
 const db = require("../models");
+const searchFunctions = require('../models/scrape')
 
 // Defining methods for the foodController
 module.exports = {
   find: function(req, res) {
     const param = req.query.q;
-    
     if(!param) {
       res.json({
         error: 'Missing required parameter `q`'
       });
       return;
     }
-
     const value = param.toLowerCase().trim();
-
-    db.Food
+    db.StoreSearch
       .find({
-        description: { $regex: value, $options: 'i' }
+        searchedTerm: { $regex: value, $options: 'i' }
       })
-      .then(foods => {
-        res.json(foods);
+      .then(items => {
+        console.log('if else fail')
+        if(!items){
+          console.log('scraping would be here')
+          async () => {
+            let testStuff = await searchFunctions.walmartSearch(value);
+            console.log(testStuff)
+            // res.json(testStuff)
+          }
+        }else{
+          console.log('results would be here')
+          res.json(items)
+        }
       })
       .catch(err => res.status(422).json(err));
   },
