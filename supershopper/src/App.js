@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Container, Menu, Image } from 'semantic-ui-react';
+// import { Grid, Container, Menu, Image } from 'semantic-ui-react';
 // import SelectedFoods from "./components/SelectedFoods/";
 // import FoodSearch from "./components/FoodSearch/";
 // import logo from "./assets/images/logo.png";
@@ -9,11 +9,11 @@ import Homepage from "./components/pages/Homepage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
-const fixedMenuStyle = {
-  backgroundColor: '#ececec',
-  border: '1px solid #ddd',
-  boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
-};
+// const fixedMenuStyle = {
+//   backgroundColor: '#ececec',
+//   border: '1px solid #ddd',
+//   boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
+// };
 
 class App extends Component {
   // state = {

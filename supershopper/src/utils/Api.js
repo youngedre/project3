@@ -9,17 +9,10 @@ function checkStatus(response) {
   throw error;
 }
 
-function parseJSON(response) {
-  return response.json();
-}
-
 export default { 
-  search: function(query, cb) {
-    return fetch(`api/food?q=${query}`, {
-      accept: "application/json"
-    })
+  search: function(query) {
+    return fetch(`api/food?q=${query}`)
     .then(checkStatus)
-    .then(parseJSON)
-    .then(cb);
+    .then(response => response.json())
   }
 };

@@ -1,0 +1,36 @@
+{
+  "name": "supershopper",
+  "version": "1.0.0",
+  "description": "Full Stack React App Demo",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server/server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd supershopper && npm run start",
+    "install": "cd supershopper && yarn install",
+    "build": "cd supershopper && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "12.10.x",
+    "npm": "6.11.x",
+    "yarn": "1.19.x"
+  },
+  "author": "Alper Gokcehan",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "csv-parser": "^2.3.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.7.8",
+    "morgan": "^1.9.1",
+    "node-cron": "^2.0.3",
+    "puppeteer": "^2.0.0"
+  }
+}
