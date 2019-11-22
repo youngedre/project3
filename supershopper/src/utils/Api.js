@@ -11,8 +11,10 @@ function checkStatus(response) {
 
 export default { 
   search: function(query) {
-    return fetch(`api/food?q=${query}`)
+    console.log('fetch attempt')
+    return fetch(`user/api/search?q=${query}`)
+    .then(console.log('fetch success'))
     .then(checkStatus)
-    .then(response => response.json())
+    .then(response => {console.log(response); response.json()})
   }
 };

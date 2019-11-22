@@ -5,6 +5,7 @@ const searchFunctions = require('../models/scrape')
 module.exports = {
   find: function(req, res) {
     const param = req.query.q;
+
     if(!param) {
       res.json({
         error: 'Missing required parameter `q`'
@@ -12,14 +13,14 @@ module.exports = {
       return;
     }
     const value = param.toLowerCase().trim();
+    console.log(value)
     db.StoreSearch
       .find({
         searchedTerm: { $regex: value, $options: 'i' }
       })
       .then(items => {
-        console.log('if else fail')
-        if(!items){
-          console.log('scraping would be here')
+        if(items.length===0){
+          console.log("scraping would be here")
           async () => {
             let testStuff = await searchFunctions.walmartSearch(value);
             console.log(testStuff)
