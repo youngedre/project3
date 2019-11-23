@@ -37,9 +37,9 @@ app.use(function(err, req, res, next) {
 	res.status(500);
 });
 
-cron.schedule("43 20 * * *",function() {
+cron.schedule("43 10 * * *",function() {
 	console.log("~~~~~~~~~~~~~~~~~~~~");
-	console.log("It is currently 8:30PM");
+	console.log("It is currently 10:43AM");
 });
 
 // Starting Server

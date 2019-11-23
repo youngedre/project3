@@ -1,4 +1,4 @@
 module.exports = {
-  Food: require("./food"),
+  // Food: require("./food"),
   StoreSearch: require('./StoreSearch')
 };

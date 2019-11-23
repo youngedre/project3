@@ -40,8 +40,8 @@ export default function SelectedFoods(props) {
   );
 }
 
-function sum(foods, prop) {
-  return foods
-    .reduce((memo, food) => parseFloat(food[prop], 10) + memo, 0.0)
-    .toFixed(2);
-}
+// function sum(foods, prop) {
+//   return foods
+//     .reduce((memo, food) => parseFloat(food[prop], 10) + memo, 0.0)
+//     .toFixed(2);
+// }
