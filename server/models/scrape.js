@@ -29,7 +29,7 @@ async function walmartSearch(searchedTerm) {
     await page.keyboard.type(searchedTerm);
     await page.click('#global-search-submit');
     await page.waitFor(750);
-    // await page.screenshot({path: './screenshots/walmart.png'});
+    await page.screenshot({path: './screenshots/walmart.png'});
   const items = await page.evaluate((searchedTerm) => {
     // console.log(a);
     let storeSource = 'Walmart';
@@ -42,7 +42,7 @@ async function walmartSearch(searchedTerm) {
       title = item.querySelector(titleTextSearch).title.trim();
       price = item.querySelector(priceTextSearch).innerText.trim();
       image = item.querySelector(imageTextSearch).src.trim();
-      itemLink = "https://walmart.com/"+item.querySelector(titleTextSearch).href.trim();
+      itemLink = item.querySelector(titleTextSearch).href.trim();
     }};
     const allItems = document.querySelectorAll('li.u-size-6-12');
     for(b of allItems) {
@@ -71,8 +71,8 @@ async function walmartSearch(searchedTerm) {
   await browser.close();
   return items
 }catch (err){console.log(err);}}
-walmartSearch("watches");
-walmartSearch("chicken");
-walmartSearch("phones");
+// walmartSearch("watches");
+// walmartSearch("chicken");
+// walmartSearch("phones");
 // amazonSearch();
 module.exports = searchFunctions

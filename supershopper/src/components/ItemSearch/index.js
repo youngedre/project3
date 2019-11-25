@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Icon, Table } from 'semantic-ui-react';
 import API from "../../utils/Api";
 
-const MATCHING_ITEM_LIMIT = 25; 
+const MATCHING_ITEM_LIMIT = 10; 
 
 //!!!!!!!!!!!!KEEP THIS FUNCTION TO PREVENT OVERLOAD!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~
 const debounce = (fn, delay) => {
@@ -31,7 +31,7 @@ class ItemSearch extends React.Component {
 
     this.setState({
       searchValue: value
-    });
+    }, function(){console.log(this.state.searchValue)});
 
     if (value === "") {
       this.setState({
@@ -47,10 +47,10 @@ class ItemSearch extends React.Component {
   }
 
   fetchFoods = (query) => {
-    console.log("show me that you work")
+    // console.log("show me that you work")
     API.search(query, result => {
       const items = result.slice(0, MATCHING_ITEM_LIMIT)
-      this.setState({ items });
+      this.setState({ items }, function () {console.log(this.state.items)});
     });
   }
 
@@ -69,8 +69,8 @@ class ItemSearch extends React.Component {
     const itemRows = items.map((item, idx) => (
       <Table.Row key={idx} onClick={() => this.props.onFoodClick(item)}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>
-        <Table.Cell className="right aligned">{Number(item.price).toFixed(2)}</Table.Cell>
-        <Table.Cell className="right aligned" ><a href={item.itemLink}><img src={item.image} border = '0'/></a></Table.Cell>
+        <Table.Cell className="right aligned">{item.price}</Table.Cell>
+        <Table.Cell className="right aligned" ><a href={item.itemLink} rel='noopener noreferrer' target='_blank'><img src={item.image} border = '0' alt='' height='150px' width='100px'/></a></Table.Cell>
         <Table.Cell className="right aligned">{item.storeSource}</Table.Cell>
       </Table.Row>
     ));

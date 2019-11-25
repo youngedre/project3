@@ -4,6 +4,6 @@ const foodController = require("../../controllers/foodController");
 // Matches with "/api/food"
 router.route("/search").get(foodController.find);
 // Matches with "/api/food/seed"
-router.route("/seed").get(foodController.importData);
+// router.route("/seed").get(foodController.importData);
 
 module.exports = router;
