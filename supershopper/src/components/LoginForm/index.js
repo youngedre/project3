@@ -1,83 +1,41 @@
 import React, {Component} from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Image, Message, Segment } from 'semantic-ui-react'
 import logo from "../../assets/images/logo.png";
+import { useAuth0 } from '../../contexts/auth0-context';
+import Header from '../Header/Header';
+import { Router, Route, Redirect } from "react-router-dom";
+import 'bulma/css/bulma.css';
 import './style.css'
 
 
+function LoginForm() {
+  const { isLoading, user, loginWithRedirect } = useAuth0();
 
-class LoginForm extends Component {
-  state = {
-    email: "",
-    password: "",
-  }
-  handleInputChange = event => {
-    let value = event.target.value;
-    const name = event.target.name;
-
-    if(name === 'password'){
-      value = value.substring(0, 15)
-    }
-    this.setState({
-      [name]: value
-    });
-  }
-  handleLoginSubmit = event => {
-    event.preventDefault();
-    if (!this.state.email || !this.state.password) {
-      alert("Fill out your email and password please!");
-    } else if (this.state.password.length < 6) {
-      alert(
-        `Invalid email and/or password` 
-      );
-    } else{
-      console.log(`${this.state.email} ${this.state.password}`);
-      this.props.history.push('/user/')
-    }
-    this.setState({
-      password: ""
-    });
-   
-  };
-  render(){
-    return(
+  return (
+    <>
+      <Header />
       <div id='background'>
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='red' textAlign='center'>
-      <Image src={logo} /><h1>Welcome To Super Shopper</h1>
-      Log-in to your account
-      </Header>
-      <Form size='large'>
-        <Segment stacked>
-          <Form.Input 
-          name='email'
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          fluid icon='user' 
-          iconPosition='left' 
-          placeholder='E-mail address' />
-          <Form.Input
-            fluid
-            icon='lock'
-            name='password'
-            value={this.state.password}
-            onChange={this.handleInputChange}
-            iconPosition='left'
-            placeholder='Password'
-            type='password'
-            />
-
-          <Button className='submit' color='black' fluid size='large' onClick={this.handleLoginSubmit}>
-            Login
-          </Button>
-        </Segment>
-      </Form>
-      <Message>
-        New to us? <a href='/signup'>Sign Up</a>
-      </Message>
-    </Grid.Column>
-  </Grid></div>
-    )}
-
+      <div className="hero is-info is-fullheight">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            {!isLoading && !user && (
+              <>
+                <h1>Please login below:</h1>
+                <hr />
+                <button onClick={loginWithRedirect} className="button is-danger">Login</button>
+              </>
+            )}
+            {!isLoading && user && (
+              <>
+              {/* <Redirect to="/user"></Redirect> */}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+      </div>
+    </>
+  );
 }
+
 export default LoginForm
