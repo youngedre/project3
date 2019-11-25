@@ -29,7 +29,7 @@ const HomepageHeading = ({ mobile }) => (
       id= 'subtitle'
       content='Make Holiday Shopping Easy'
       style={{
-        color: 'white',
+        color: 'black',
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
         marginTop: mobile ? '0.5em' : '1.5em',
@@ -59,6 +59,7 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+        <div id= 'background'>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -67,7 +68,7 @@ class DesktopContainer extends Component {
           <Segment
             id="segmentID"
             textAlign='center'
-            style={{ minHeight: 800, padding: '1em 0em' }}
+            style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
             <GlobalHeader/>
@@ -76,6 +77,7 @@ class DesktopContainer extends Component {
         </Visibility>
 
         {children}
+      </div>
       </Responsive>
     )
   }
@@ -102,7 +104,7 @@ class MobileContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 350, padding: '1em 0em' }}
+            style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
             <GlobalHeader />
