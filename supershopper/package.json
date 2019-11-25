@@ -1,5 +1,5 @@
 {
-  "name": "Super Holiday Shopper client",
+  "name": "super-holiday-shopper-client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",

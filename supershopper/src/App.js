@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import User from "./components/pages/User"
 import Search from "./components/pages/Search"
+import SearchResults from "./components/pages/SearchResult"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useAuth0 } from './contexts/auth0-context';
 import Header from './components/Header/Header';
@@ -42,6 +43,7 @@ function App() {
     <>
     <Router history={history}>
     <Route exact path="/" component={Search} />
+    <Route exact path="/search" component={SearchResults} />
     <Route exact path="/user" component={User} />
     <Route exact path="/login" component={LoginForm} />
       {/* <Header />
