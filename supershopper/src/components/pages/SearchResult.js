@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import ItemSearch from '../ItemSearch';
 import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, List, Menu, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
 import './search.css'
 import GlobalHeader from '../Header/Header'
@@ -11,18 +12,6 @@ const getWidth = () => {
 
 const HomepageHeading = ({ mobile }) => (
   <Container id='containerID' text>
-    <Header
-      as='h1'
-      id="title"
-      content='Super Holiday Shopper!'
-      style={{
-        color: 'white' ,
-        fontSize: mobile ? '4em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
     <Header
       as='h2'
       id= 'subtitle'
