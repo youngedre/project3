@@ -38,6 +38,7 @@ const HomepageHeading = ({ mobile }) => (
   </Container>
 )
 
+
 HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
 }
@@ -58,7 +59,6 @@ class DesktopContainer extends Component {
 
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
-        <div id= 'background'>
         <Visibility
           once={false}
           onBottomPassed={this.showFixedMenu}
@@ -76,7 +76,6 @@ class DesktopContainer extends Component {
         </Visibility>
 
         {children}
-      </div>
       </Responsive>
     )
   }
@@ -98,9 +97,10 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-        <Responsive>
+        <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
+            id="segmentID"
             inverted
             textAlign='center'
             style={{ minHeight: '100vh', padding: '1em 0em' }}
@@ -123,8 +123,8 @@ MobileContainer.propTypes = {
 
 const ResponsiveContainer = ({ children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer getWidth={getWidth}>{children}</DesktopContainer>
+    <MobileContainer getWidth={getWidth}>{children}</MobileContainer>
   </div>
 )
 

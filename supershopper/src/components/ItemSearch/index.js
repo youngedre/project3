@@ -77,8 +77,7 @@ class ItemSearch extends React.Component {
 
     return (
       <>
-        <div className="ui fluid search">
-          <div className="ui icon input">
+          <div className="ui input">
             <input
               className="prompt"
               type="text"
@@ -86,14 +85,13 @@ class ItemSearch extends React.Component {
               value={this.state.searchValue}
               onChange={this.handleSearchChange}
             />
-            <i className="search icon" />
           </div>
+            <i className="search icon" />
           <i
             className="remove icon"
             onClick={this.handleSearchCancel}
             style={removeIconStyle}
           />
-        </div>
         <Card fluid color='yellow' style={{ marginBottom: '2em' }}>
           <Card.Content header="Saved Items"></Card.Content>
           <Card.Content>
