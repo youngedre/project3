@@ -4,7 +4,6 @@ import React, { Component } from "react";
 // import FoodSearch from "./components/FoodSearch/";
 // import logo from "./assets/images/logo.png";
 import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
 import User from "./components/pages/User"
 import Search from "./components/pages/Search"
 import SearchResults from "./components/pages/SearchResult"
