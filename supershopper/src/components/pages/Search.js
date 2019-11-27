@@ -97,7 +97,11 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
+<<<<<<< HEAD
+        <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
+=======
         <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
+>>>>>>> a7670763978ac1ba8b47e3a29d59440d8e55a31e
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             id="segmentID"
