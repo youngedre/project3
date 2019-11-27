@@ -1,5 +1,5 @@
 html, body {
-    overflow: hidden;
+    overflow: auto;
 }
 #segmentID {
     background-image: url('../../assets/images/pexels-photo-264489.jpg');

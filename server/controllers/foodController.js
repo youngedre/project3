@@ -13,17 +13,19 @@ module.exports = {
         });
         return;
       }
-    const value = param.toLowerCase().trim();
+    const value = param.toLowerCase().trim().split(' ').join('+');
+
     console.log(value)
     itemSearchResults = await db.StoreSearch
       .find({
         searchedTerm: { $regex: value, $options: 'i' }
       })
-      if(itemSearchResults.length <= 14){
+      if(itemSearchResults.length <= 30){
         console.log("scraping would be here")
-        let testStuff = await searchFunctions.walmartSearch(value);
-        console.log("The Scrape worked!!!",testStuff)
-        return res.json(testStuff)
+        let testWalmart = await searchFunctions.walmartSearch(value);
+        let testAmazon = await searchFunctions.amazonSearch(value)
+        console.log("The Scrape worked!!!")
+        return res.json(testAmazon)
       }else{
         console.log('results would be here: ', itemSearchResults)
         return res.json(itemSearchResults)

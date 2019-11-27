@@ -98,7 +98,7 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-        <Responsive>
+        <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
