@@ -6,19 +6,23 @@ if (process.env.NODE_ENV !== 'production') {
 require('dotenv').config();
 
 const express = require('express');
+const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const routes = require('./routes');
 const app = express();
 const cron = require('node-cron');
+const passport = require('./passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const PORT = process.env.PORT || 3001;
 
 // Connect to the Mongo DB
-require('./db');
+const db = require('./db');
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // If its production environment!
 if (process.env.NODE_ENV === 'production') {
@@ -27,6 +31,16 @@ if (process.env.NODE_ENV === 'production') {
 	app.use('/static', express.static(path.join(__dirname, '../supershopper/build/static')));
 }
 
+app.use(session({
+	secret: 'ThisTest',
+	store: new MongoStore({ mongooseConnection: db}),
+	resave: false,
+	saveUninitialized: false
+}))
+//Adds passport
+
+app.use(passport.initialize())
+app.use(passport.session())
 // Add routes, both API and view
 app.use(routes);
 

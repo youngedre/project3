@@ -1,16 +1,22 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 import logo from "../../assets/images/logo.png";
+import axios from 'axios'
 
 
 
 class SignUpForm extends Component {
-  state = {
+  constructor () {
+    super()
+  this.state = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   }
+  this.handleSignupSubmit = this.handleSignupSubmit.bind(this)
+  this.handleInputChange = this.handleInputChange.bind(this)
+}
   handleInputChange = event => {
     let value = event.target.value;
     const name = event.target.name;
@@ -35,8 +41,26 @@ class SignUpForm extends Component {
       );
     }
     else{
-        console.log(`${this.state.email} ${this.state.password}`);
-        this.props.history.push('/user/')
+        console.log("email: ", this.state.email, "password: ", this.state.password);
+        axios.post('/user/', {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          password: this.state.password,
+          email: this.state.email
+        }).then(res => {
+          console.log(res);
+          if(res.data) {
+            console.log('signup success');
+            this.props.history.push('/login/')
+            // this.setState({
+            //   redirectTo: '/login'
+            // })
+          } else {
+            console.log('error signing up')
+          }
+        }).catch(err => {
+          console.log('server side signup error: ', err)
+        })
       }
     
   };
@@ -70,7 +94,8 @@ class SignUpForm extends Component {
     <Form.Group widths={2}>
       <Form.Input
       name='email' 
-      label='Email address' 
+      label='Email address'
+      type = 'email' 
       placeholder='Email address' 
       value={this.state.email}
       onChange={this.handleInputChange}
