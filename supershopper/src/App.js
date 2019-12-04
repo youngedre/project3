@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useAuth0 } from './contexts/auth0-context';
 import Header from './components/Header/Header';
 import history from "./utils/history";
+import SignUpForm from "./components/SignupForm";
 
 
 // const fixedMenuStyle = {
@@ -43,8 +44,10 @@ function App() {
     <Router history={history}>
     <Route exact path="/" component={Search} />
     <Route exact path="/search" component={SearchResults} />
-    <Route exact path="/user" component={User} />
+    <Route exact path="/profile" component={User} />
     <Route exact path="/login" component={LoginForm} />
+    <Route exact path="/signup" component={SignUpForm} />
+
       {/* <Header />
       <div className="hero is-info is-fullheight">
         <div className="hero-body">

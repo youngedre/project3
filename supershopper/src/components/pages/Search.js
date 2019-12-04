@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, List, Menu, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
 import './search.css'
 import GlobalHeader from '../Header/Header'
+// import 'bulma/css/bulma.css'
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
@@ -97,11 +98,7 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-<<<<<<< HEAD
-        <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
-=======
         <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
->>>>>>> a7670763978ac1ba8b47e3a29d59440d8e55a31e
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             id="segmentID"

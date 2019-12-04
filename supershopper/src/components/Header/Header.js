@@ -19,7 +19,7 @@ export default function Header() {
             <div className="navbar-end">
               {/* if there is no user. show the login button */}
               {!isLoading && !user && (
-                <button onClick={loginWithRedirect} id= "loginButton" className="navbar-item">
+                <button onClick={event => window.location.href='/login'} id= "loginButton" className="navbar-item">
                   Login
                 </button>
               )}
