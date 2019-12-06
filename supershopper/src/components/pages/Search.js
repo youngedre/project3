@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, List, Menu, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
+import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, Input, List, Menu, Responsive, Segment, Sidebar, Visibility, Form } from 'semantic-ui-react'
 import './search.css'
-import GlobalHeader from '../Header/Header'
-// import 'bulma/css/bulma.css'
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
@@ -35,7 +33,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-   <input type="text" class="ui input" placeholder="Search..." /> 
+    <Container id='searchcontainer'>
+   <Input fluid icon='search' placeholder="Search..." /> </Container>
   </Container>
 )
 
@@ -71,7 +70,6 @@ class DesktopContainer extends Component {
             style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
-            <GlobalHeader/>
             <HomepageHeading />
           </Segment>
         </Visibility>
@@ -107,7 +105,6 @@ class MobileContainer extends Component {
             style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
-            <GlobalHeader />
             <HomepageHeading mobile />
           </Segment>
 

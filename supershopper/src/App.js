@@ -9,9 +9,10 @@ import Search from "./components/pages/Search"
 import SearchResults from "./components/pages/SearchResult"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useAuth0 } from './contexts/auth0-context';
-import Header from './components/Header/Header';
+import Navbar from './components/Navbar';
 import history from "./utils/history";
 import SignUpForm from "./components/SignupForm";
+import axios from 'axios'
 
 
 // const fixedMenuStyle = {
@@ -38,14 +39,61 @@ import SignUpForm from "./components/SignupForm";
   // };
 
 
-function App() {
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      email: null
+    }
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  updateUser (userObject) {
+    this.setState(userObject)
+  }
+
+  getUser() {
+    axios.get('/user/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          email: response.data.user.email
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          email: null
+        })
+      }
+    })
+  }
+  render() {
   return (
     <>
     <Router history={history}>
+    <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
     <Route exact path="/" component={Search} />
     <Route exact path="/search" component={SearchResults} />
     <Route exact path="/profile" component={User} />
-    <Route exact path="/login" component={LoginForm} />
+    <Route
+          path="/login"
+          render={() =>
+            <LoginForm
+              updateUser={this.updateUser}
+            />} /> 
     <Route exact path="/signup" component={SignUpForm} />
 
       {/* <Header />
@@ -70,6 +118,7 @@ function App() {
       </Router>
     </>
   );
+}
 }
 
 export default App;
