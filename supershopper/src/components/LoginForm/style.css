@@ -5,5 +5,5 @@ body {
 
 #background {
   background-image: url('../../assets/images/image.png');
-  background-size: 100%;
+  background-size: cover;
 }

@@ -21,3 +21,7 @@ html, body {
     /* text-shadow: 0 0 1px #5af211, 0 0 5px #5af211; */
 
 }
+
+#searchcontainer {
+    width: 200;
+}
