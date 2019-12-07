@@ -44,7 +44,9 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      email: null
+      email: null,
+      firstName: null,
+      lastName: null
     }
 
     this.getUser = this.getUser.bind(this)
@@ -69,7 +71,9 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          email: response.data.user.email
+          email: response.data.user.email,
+          firstName: response.data.user.firstName,
+          lastName: response.data.user.lastName
         })
       } else {
         console.log('Get user: no user');
@@ -84,7 +88,7 @@ class App extends Component {
   return (
     <>
     <Router history={history}>
-    <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+    <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} email={this.state.email} firstName={this.state.firstName} lastName={this.state.lastName} />
     <Route exact path="/" component={Search} />
     <Route exact path="/search" component={SearchResults} />
     <Route exact path="/profile" component={User} />

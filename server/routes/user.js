@@ -37,7 +37,9 @@ passport.authenticate('local'),
 (req,res) => {
     console.log('logged in', req.user);
     let userInfo = {
-        email: req.user.email
+        email: req.user.email,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName
     };
     res.send(userInfo);
 }

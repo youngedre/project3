@@ -21,6 +21,7 @@ class Header extends Component {
               loggedIn: false,
               username: null
             })
+            window.location.href = '/'
           }
         }).catch(error => {
             console.log('Logout error')
@@ -29,6 +30,8 @@ class Header extends Component {
 
     render() {
         const loggedIn = this.props.loggedIn;
+        const firstName = this.props.firstName;
+        const lastName = this.props.lastName;
         console.log('navbar render, props: ')
         console.log(this.props);
         
@@ -41,8 +44,8 @@ class Header extends Component {
                                  <Navbar.Brand href="/">Welcome Holiday Shopper</Navbar.Brand>
                                  <Navbar.Toggle />
                                 <Navbar.Collapse className="justify-content-end">
-                                <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span></Link> 
+                                 Signed in as: <a href="/profile"> {this.props.firstName} {this.props.lastName}</a>
+                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}><span className="text-secondary">logout</span></Link> 
                                 </Navbar.Collapse>
                                 </Navbar>
                             </section>
