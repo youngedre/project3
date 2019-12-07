@@ -57,9 +57,9 @@ class DesktopContainer extends Component {
     // console.log("show me that you work")
     if(event.key === 'Enter')
     API.search(this.state.searchValue).then(result => {
-      console.log(result);
+      // console.log(result);
       const items = result
-      this.setState({ items }, function () {console.log(this.state.items)});
+      this.setState({ items })//, function () {console.log(this.state.items)});
     });
   }
 

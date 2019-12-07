@@ -46,7 +46,7 @@ async function amazonSearch(searchBarTerm) {
             title = 'failedTitle';
             price = 'failedPrice';
             image = 'failedImage';
-            itemLink = 'failedLink'
+            itemLink = 'failedLink';
         }
     };
         const allItems = document.querySelectorAll('div.sg-col-4-of-12');

@@ -1,12 +1,12 @@
 const db = require("../models");
-const searchFunctions = require('../models/scrape')
+const searchFunctions = require('../models/scrape');
 
 // Defining methods for the 
 module.exports = {
   find: async function(req, res) {
     try{
       const param = req.query.q;
-
+      console.log(param)
       if(!param) {
         res.json({
          error: 'Missing required parameter `q`'
@@ -14,14 +14,17 @@ module.exports = {
         return;
       }
     const value = param.toLowerCase().trim().split(' ').join('+');
-
     console.log(value)
     itemSearchResults = await db.StoreSearch
       .find({
-        searchedTerm: { $regex: value, $options: 'i' }
+        searchedTerm: value
       })
+      // console.log(itemSearchResults)
       let walmartFiltered = itemSearchResults.filter(item => item.storeSource === 'Walmart')
       let amazonFiltered = itemSearchResults.filter(item => item.storeSource === 'Amazon')
+      let targetFiltered = itemSearchResults.filter(item => item.storeSource === 'Target')
+      // console.log("DB Amazon count: ", amazonFiltered)
+      // console.log("DB Walmart count: ", walmartFiltered)
       let prom1 = new Promise ((resolve, reject) => {
         let testWalmart = walmartFiltered.length<15 ? searchFunctions.walmartSearch(value) : walmartFiltered;
         resolve(testWalmart)
@@ -33,10 +36,13 @@ module.exports = {
         resolve(testAmazon)
         reject("Failed to search") 
       })
+      let prom3 = new Promise ((resolve, reject) => {
+        let testTarget = targetFiltered.length<15 ? searchFunctions.targetSearch(value) : targetFiltered
+        resolve(testTarget)
+        reject("Failed to search") 
+      })
 
-      let allResults = await Promise.all([prom1, prom2]);
-
-      
+      let allResults = await Promise.all([prom1, prom2, prom3]);
 
       // if(walmartFiltered.length <= 20){
       //   let testWalmart = await searchFunctions.walmartSearch(value);
@@ -50,6 +56,7 @@ module.exports = {
       // }else{allResults = allResults.push(amazonFiltered)}
       let mergedResults = []
       mergedResults = allResults.map(arr => mergedResults.concat(arr))
+      console.log("Target: ",mergedResults[2])
       return res.json(mergedResults)
       }
       catch(err){res.status().json(err)};

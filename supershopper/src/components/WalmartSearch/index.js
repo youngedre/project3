@@ -47,12 +47,12 @@ class WalmartSearch extends Component {
     const { children } = this.props
     // const { fixed, items } = this.state
     const walmartItems = this.props.data || [] //items.filter(item => item.storeSource === 'Walmart')
-    const walmartItemRows = walmartItems.map((item, idx) => (
+    const walmartItemRows = walmartItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>
         <Table.Cell className="right aligned">{item.price}</Table.Cell>
         <Table.Cell className="right aligned" ><a href={item.itemLink} rel='noopener noreferrer' target='_blank'><img src={item.image} border = '0' alt='' height='150px' width='100px'/></a></Table.Cell>
-        <Table.Cell className="right aligned">{item.storeSource}</Table.Cell>
+        {/* <Table.Cell className="right aligned">{item.storeSource}</Table.Cell> */}
       </Table.Row>
     ));
 return (
