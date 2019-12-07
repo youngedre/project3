@@ -8,30 +8,36 @@ import { Button, Container, Card, Divider, Grid, Header, Input, Icon, ImageBackg
 import GlobalHeader from '../Header/Header'
 
 class WalmartSearch extends Component {
-state = {
-    items: [],
-    searchValue: ""
-  };
-  handleSearchChange = (e) => {
-    const value = e.target.value;
 
-    this.setState({
-      searchValue: value
-    }, function(){console.log(this.state.searchValue)});
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
 
-    if (value === "") {
-      this.setState({
-        items: []
-      });
-    } 
-  }
-  fetchFoods = (query) => {
-    // console.log("show me that you work")
-    API.search(query, result => {
-      const items = result
-      this.setState({ items }, function () {console.log(this.state.items)});
-    });
-  }
+//     state = {
+//     items: [],
+//     searchValue: ""
+//   };
+//   handleSearchChange = (e) => {
+//     const value = e.target.value;
+
+//     this.setState({
+//       searchValue: value
+//     }, function(){console.log(this.state.searchValue)});
+
+//     if (value === "") {
+//       this.setState({
+//         items: []
+//       });
+//     } 
+//   }
+//   fetchFoods = (query) => {
+//     // console.log("show me that you work")
+//     API.search(query, result => {
+//       const items = result
+//       this.setState({ items }, function () {console.log(this.state.items)});
+//     });
+//   }
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
@@ -39,8 +45,8 @@ state = {
   render() {
     
     const { children } = this.props
-    const { fixed, items } = this.state
-    const walmartItems = items.filter(item => item.storeSource === 'Walmart')
+    // const { fixed, items } = this.state
+    const walmartItems = this.props.data || [] //items.filter(item => item.storeSource === 'Walmart')
     const walmartItemRows = walmartItems.map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>

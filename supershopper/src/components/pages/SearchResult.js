@@ -56,7 +56,8 @@ class DesktopContainer extends Component {
   fetchItems = (event) => {
     // console.log("show me that you work")
     if(event.key === 'Enter')
-    API.search(this.state.searchValue, result => {
+    API.search(this.state.searchValue).then(result => {
+      console.log(result);
       const items = result
       this.setState({ items }, function () {console.log(this.state.items)});
     });
@@ -90,10 +91,10 @@ class DesktopContainer extends Component {
           <Grid divided="vertically" id='grid'>
             <Grid.Row columns="2">
               <Grid.Column>
-                <WalmartSearch />
+                <WalmartSearch data={items[0]}/>
               </Grid.Column>
               <Grid.Column>
-                <AmazonSearch />
+                <AmazonSearch  data={items[1]} />
               </Grid.Column>
             </Grid.Row>
           </Grid>

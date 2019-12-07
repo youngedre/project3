@@ -39,8 +39,8 @@ state = {
   render() {
     
     const { children } = this.props
-    const { fixed, items } = this.state
-    const amazonItems = items.filter(item => item.storeSource === 'Amazon')
+    // const { fixed, items } = this.state
+    const amazonItems = this.props.data || [] //items.filter(item => item.storeSource === 'Amazon')
     const amazonItemRows = amazonItems.map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>

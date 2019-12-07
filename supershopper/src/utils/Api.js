@@ -10,13 +10,13 @@ function checkStatus(response) {
 }
 
 export default { 
-  search: function(query, cb) {
+  search: function(query) {
     console.log('fetch attempt')
-    return fetch(`/profile/api/search?q=${query}`)
+    return fetch(`/search/api/search?q=${query}`)
     .then(console.log('fetch success'))
     .then(checkStatus)
     .then(response => {console.log(response); return response.json()})
-    .then(cb);
+    //.then(cb);  
     // .then(data => console.log(data))
     }
 };
