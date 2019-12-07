@@ -4,7 +4,7 @@ const apiRoutes = require("./api");
 const user = require('./user')
 
 // API Routes
-router.use("/profile", apiRoutes);
+router.use("/search", apiRoutes);
 
 router.use('/user', user)
 
