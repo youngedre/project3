@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ItemSearch from '../ItemSearch';
-import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, List, Menu, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
+import API from "../../utils/Api";
+import AmazonSearch from '../AmazonSearch'
+import { Button, Container, Card, Divider, Grid, Header, Input, Icon, ImageBackground, List, Menu, Table, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
 import './search.css'
 import GlobalHeader from '../Header/Header'
+import WalmartSearch from '../WalmartSearch';
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
@@ -23,7 +26,6 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-   <input type="text" class="ui input" placeholder="Search..." /> 
   </Container>
 )
 
@@ -36,15 +38,39 @@ HomepageHeading.propTypes = {
  * It can be more complicated, but you can create really flexible markup.
  */
 class DesktopContainer extends Component {
-  state = {}
+  state = {
+    items: [],
+    searchValue: ""
+  };
+  handleSearchChange = (e) => {
+    const value = e.target.value;
+
+    this.setState({
+      searchValue: value
+    }, function(){console.log(this.state.searchValue)});
+
+    if (value === "") {
+      this.setState({
+        items: []
+      });
+    } 
+  }
+  fetchItems = (event) => {
+    // console.log("show me that you work")
+    if(event.key === 'Enter')
+    API.search(this.state.searchValue, result => {
+      const items = result
+      this.setState({ items }, function () {console.log(this.state.items)});
+    });
+  }
+
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
     const { children } = this.props
-    const { fixed } = this.state
-
+    const { fixed, items } = this.state
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
         <div id= 'background'>
@@ -61,7 +87,23 @@ class DesktopContainer extends Component {
           >
             <GlobalHeader/>
             <HomepageHeading />
+            <Container fluid style={{ marginTop: '4.6em', width: '80vw'} }>
+            <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
+            <br></br>
+          <Grid divided="vertically">
+            <Grid.Row columns="2">
+              <Grid.Column>
+                <WalmartSearch />
+              </Grid.Column>
+              <Grid.Column>
+                <AmazonSearch />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+         
           </Segment>
+          
         </Visibility>
 
         {children}

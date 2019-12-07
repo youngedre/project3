@@ -30,7 +30,7 @@ async function walmartSearch(searchBarTerm) {
         window.scrollTo(0, 0)
     });
     await wait(100);
-  const items = await page.evaluate((searchedTerm) => {
+  const items = await page.evaluate((searchBarTerm) => {
     let storeSource = 'Walmart';
     let data = [];
     const titleTextSearch = 'a.product-title-link';
@@ -52,11 +52,11 @@ async function walmartSearch(searchBarTerm) {
         image,
         itemLink,
         storeSource,
-        searchedTerm
+        searchedTerm: searchBarTerm
     });
   }
   return data;
-  }, searchedTerm);
+  }, searchBarTerm);
   for (let k=0; k<Math.min(items.length, 15); k++) {
     try{db.create(items[k]);}
     catch(err){console.log(err);}
