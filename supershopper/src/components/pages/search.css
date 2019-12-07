@@ -25,3 +25,7 @@ html, body {
 #searchcontainer {
     width: 200;
 }
+
+#grid {
+    margin-left: 5px;
+}

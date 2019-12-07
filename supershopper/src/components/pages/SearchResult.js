@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import ItemSearch from '../ItemSearch';
 import API from "../../utils/Api";
 import AmazonSearch from '../AmazonSearch'
 import { Button, Container, Card, Divider, Grid, Header, Input, Icon, ImageBackground, List, Menu, Table, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
-import './search.css'
-import GlobalHeader from '../Header/Header'
 import WalmartSearch from '../WalmartSearch';
+import './search.css'
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
 
@@ -85,12 +83,11 @@ class DesktopContainer extends Component {
             style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
-            <GlobalHeader/>
             <HomepageHeading />
             <Container fluid style={{ marginTop: '4.6em', width: '80vw'} }>
             <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
             <br></br>
-          <Grid divided="vertically">
+          <Grid divided="vertically" id='grid'>
             <Grid.Row columns="2">
               <Grid.Column>
                 <WalmartSearch />
@@ -129,7 +126,7 @@ class MobileContainer extends Component {
     const { sidebarOpened } = this.state
 
     return (
-        <Responsive>
+        <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
@@ -137,7 +134,7 @@ class MobileContainer extends Component {
             style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
-            <GlobalHeader />
+            
             <HomepageHeading mobile />
           </Segment>
 
@@ -154,8 +151,8 @@ MobileContainer.propTypes = {
 
 const ResponsiveContainer = ({ children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer getWidth={getWidth}>{children}</DesktopContainer>
+    <MobileContainer getWidth={getWidth}>{children}</MobileContainer>
   </div>
 )
 
