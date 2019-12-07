@@ -3,7 +3,6 @@ import { Grid, Container, Menu, Image } from 'semantic-ui-react';
 import ItemSearch from '../ItemSearch';
 import SelectedFoods from '../SelectedFoods'
 import logo from '../../assets/images/logo.png'
-import Header from '../Header/Header'
 
 const fixedMenuStyle = {
     backgroundColor: '#ececec',
@@ -32,8 +31,6 @@ class Homepage extends Component {
         return(
      <div style={{ padding: '1.2em' }}>
         
-      <Header />
-
         <Container fluid style={{ marginTop: '4.6em' }}>
           <Grid divided="vertically">
             <Grid.Row columns="2">
