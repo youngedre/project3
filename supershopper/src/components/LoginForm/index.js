@@ -16,7 +16,7 @@ class LoginForm extends Component {
     redirectTo: null
   }
   this.handleInputChange = this.handleInputChange.bind(this)
-  this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+  // this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
 }
   handleInputChange = event => {
     let value = event.target.value;
