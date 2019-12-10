@@ -33,23 +33,19 @@ async function amazonSearch(searchBarTerm) {
     const items = await page.evaluate((searchBarTerm) => {
         let storeSource = 'Amazon';
         let data = [];
+        let title, price, image, itemLink = 'failed'
         const titleTextSearch = 'a.a-link-normal img';
         const priceTextSearch = 'span.a-price span.a-offscreen';
         const linkTextSearch = 'a.a-link-normal'
         const grabInfo = (item) => {
-          if(item.querySelector(titleTextSearch) && item.querySelector(priceTextSearch)){
-          title = item.querySelector(titleTextSearch).alt.trim();
-          price = item.querySelector(priceTextSearch).innerText.trim();
-          image = item.querySelector(titleTextSearch).src.trim();
-          itemLink = item.querySelector(linkTextSearch).href.trim();
-        }else{
-            title = 'failedTitle';
-            price = 'failedPrice';
-            image = 'failedImage';
-            itemLink = 'failedLink';
-        }
-    };
-        const allItems = document.querySelectorAll('div.sg-col-4-of-12');
+          title = item.querySelector(titleTextSearch) === (undefined || null) ? 'failedTitle' : item.querySelector(titleTextSearch).alt.trim();
+          price = item.querySelector(priceTextSearch) === (undefined || null) ?  'failedPrice' : item.querySelector(priceTextSearch).innerText.trim();
+          image = item.querySelector(titleTextSearch) === (undefined || null) ? 'failedImage' : item.querySelector(titleTextSearch).src.trim();
+          itemLink = item.querySelector(linkTextSearch) === (undefined || null) ? 'failedLink' : item.querySelector(linkTextSearch).href.trim();
+        };
+        //let itemColTest = document.querySelectorAll('div.sg-col-4-of-12') ? 1 : 2;
+        const allItems = document.querySelectorAll('div.sg-col.s-result-item')
+        //document.querySelectorAll('div.sg-col-4-of-12') ? ;
         for(b of allItems){
             grabInfo(b)
             data.push({
@@ -63,6 +59,7 @@ async function amazonSearch(searchBarTerm) {
         }
         return data
         }, searchBarTerm)
+        //console.log(items.length)
         const newItems = []
         let i=0;
         for (let k=0; i<15; k++) {
@@ -73,7 +70,7 @@ async function amazonSearch(searchBarTerm) {
                     db.create(items[k]);};
                 }catch(err){console.log(err);}
           }
-        console.log('Check Database');
+        // console.log('Check Database');
         await browser.close();
         return newItems
         }catch(err){console.log(err)}    
