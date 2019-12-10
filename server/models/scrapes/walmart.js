@@ -19,7 +19,7 @@ async function walmartSearch(searchBarTerm) {
 
     const viewportHeight = page.viewport().height;
     let viewportIncr = 0;
-    while(viewportIncr +viewportHeight <height ){
+    while(viewportIncr + viewportHeight < height ){
         await page.evaluate(_viewportHeight => {
             window.scrollBy(0, _viewportHeight);
         }, viewportHeight);
@@ -43,10 +43,19 @@ async function walmartSearch(searchBarTerm) {
       image = item.querySelector(imageTextSearch).src.trim();
       itemLink = item.querySelector(titleTextSearch).href.trim();
     }};
-    const allItems = document.querySelectorAll('li.u-size-6-12');
+    const getSecondInfo = (item) => {
+      title = item.querySelector('div.search-result-productimage.listview img').alt.trim()
+      price = item.querySelector('div.tile-aside.Grid-col.u-size-2-8.u-offset-1-8 span.price span.visuallyhidden').innerText.trim()
+      image = item.querySelector('div.search-result-productimage.listview img').src.trim()
+      itemLink = item.querySelector('div.search-result-productimage.listview a').href.trim()
+    }
+    const searchOne = document.querySelectorAll('li.u-size-6-12');
+    const searchTwo = document.querySelectorAll('div.search-result-listview-item.Grid')
+    const allItems = searchOne.length < 20 ? searchTwo : searchOne
     console.log(allItems)
     for(b of allItems) {
-      grabInfo(b);
+      if(searchOne.length < 20){getSecondInfo(b)} else{grabInfo(b)};
+      //getSecondInfo(b)
       data.push({
         title,
         price,
@@ -62,7 +71,7 @@ async function walmartSearch(searchBarTerm) {
     try{db.create(items[k]);}
     catch(err){console.log(err);}
   }
-  console.log("Check database")
+  // console.log("Check database")
   await browser.close();
   return items
 }catch (err){console.log(err);}}
