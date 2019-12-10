@@ -1,3 +1,10 @@
 #navbar {
     opacity: 80%;
 }
+
+#link {
+    color: red;
+}
+#logout {
+    color: black;
+}

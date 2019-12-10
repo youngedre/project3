@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Button, Container, Divider, Grid, Header, Icon, ImageBackground, Input, List, Menu, Responsive, Segment, Sidebar, Visibility, Form } from 'semantic-ui-react'
+import { BrowserRouter } from 'react-router-dom'
+import {Container,  Header, Input, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
 import './search.css'
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
@@ -34,7 +35,7 @@ const HomepageHeading = ({ mobile }) => (
       }}
     />
     <Container id='searchcontainer'>
-   <Input fluid icon='search' placeholder="Search..." /> </Container>
+  </Container>
   </Container>
 )
 
@@ -48,13 +49,45 @@ HomepageHeading.propTypes = {
  * It can be more complicated, but you can create really flexible markup.
  */
 class DesktopContainer extends Component {
-  state = {}
+  state = {
+    searchValue: ""
+  }
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
+  handleSearchChange = (e) => {
+    const value = e.target.value;
+
+    this.setState({
+      searchValue: value
+    }, function(){console.log(this.state.searchValue)});
+    
+  };
+
+  handleSearch = (e) => {
+    const value = e.target.value;
+
+    this.setState({
+      searchValue: value
+    }, function(){ if(e.key === 'Enter') {
+      console.log(this.state.searchValue)
+  }});
+
+  // if(e.key === 'Enter'){
+  //   this.props.history.push({
+  //     pathname: '/template',
+  //     search: '?query=abc',
+  //     state: { detail: response.data }
+  //   })
+  //   browserHistory.push({pathname: '/search', state: {searchValue: value}});
+
+  // }
+}
+
   render() {
     const { children } = this.props
+    console.log('props ', this.props)
     const { fixed } = this.state
 
     return (
@@ -71,6 +104,9 @@ class DesktopContainer extends Component {
             vertical
           >
             <HomepageHeading />
+            <Container fluid style={{ width: '80vw'}}>
+            <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.handleSearch} className="ui input" placeholder="Search..." /> 
+            </Container >
           </Segment>
         </Visibility>
 
@@ -106,6 +142,7 @@ class MobileContainer extends Component {
             vertical
           >
             <HomepageHeading mobile />
+            <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
           </Segment>
 
           {children}
@@ -119,12 +156,15 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const ResponsiveContainer = ({ children }) => (
-  <div>
-    <DesktopContainer getWidth={getWidth}>{children}</DesktopContainer>
-    <MobileContainer getWidth={getWidth}>{children}</MobileContainer>
-  </div>
-)
+const ResponsiveContainer = ({ children }) => {
+  console.log('children ', children)
+  return (
+    <div>
+      <DesktopContainer getWidth={getWidth}>{children}</DesktopContainer>
+      <MobileContainer getWidth={getWidth}>{children}</MobileContainer>
+    </div>
+  )
+}
 
 ResponsiveContainer.propTypes = {
   children: PropTypes.node,

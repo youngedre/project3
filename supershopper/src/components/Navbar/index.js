@@ -17,6 +17,7 @@ class Header extends Component {
         axios.post('/user/logout').then(response => {
           console.log(response.data)
           if (response.status === 200) {
+            console.log('update user fired')
             this.props.updateUser({
               loggedIn: false,
               username: null
@@ -30,6 +31,7 @@ class Header extends Component {
 
     render() {
         const loggedIn = this.props.loggedIn;
+
         const firstName = this.props.firstName;
         const lastName = this.props.lastName;
         console.log('navbar render, props: ')
@@ -40,17 +42,17 @@ class Header extends Component {
                     <div className="col-12" >
                         {loggedIn ? (
                             <section className="navbar-section">
-                                <Navbar fixed='top' className='bg-info text-white' id="navbar">
+                                <Navbar fixed='top' className='bg-success text-white' id="navbar">
                                  <Navbar.Brand href="/">Welcome Holiday Shopper</Navbar.Brand>
                                  <Navbar.Toggle />
                                 <Navbar.Collapse className="justify-content-end">
-                                 Signed in as: <a href="/profile"> {this.props.firstName} {this.props.lastName}</a>
-                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}><span className="text-secondary">logout</span></Link> 
+                                 Signed in as: <Link to="/profile" id='link'> {this.props.email}</Link>
+                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout} id='logout'><span className="text-secondary">logout</span></Link> 
                                 </Navbar.Collapse>
                                 </Navbar>
                             </section>
                         ) : (
-                            <Navbar fixed='top' className='bg-info text-white' id="navbar">
+                            <Navbar fixed='top' className='bg-success text-white' id="navbar">
                             <Navbar.Brand href="/">Welcome Holiday Shopper!</Navbar.Brand>
                             <Navbar.Toggle />
                             <Navbar.Collapse className="justify-content-end">

@@ -13,7 +13,7 @@ import Navbar from './components/Navbar';
 import history from "./utils/history";
 import SignUpForm from "./components/SignupForm";
 import axios from 'axios'
-
+import Carousel from './components/pages/Carousel'
 
 // const fixedMenuStyle = {
 //   backgroundColor: '#ececec',
@@ -59,6 +59,7 @@ class App extends Component {
   }
 
   updateUser (userObject) {
+    console.log('userupdate is firing')
     this.setState(userObject)
   }
 
@@ -72,8 +73,6 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           email: response.data.user.email,
-          firstName: response.data.user.firstName,
-          lastName: response.data.user.lastName
         })
       } else {
         console.log('Get user: no user');
@@ -85,12 +84,13 @@ class App extends Component {
     })
   }
   render() {
+    console.log("PROPS HIGHER ", this.props)
   return (
     <>
     <Router history={history}>
     <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} email={this.state.email} firstName={this.state.firstName} lastName={this.state.lastName} />
-    <Route exact path="/" component={Search} />
-    <Route exact path="/search" component={SearchResults} />
+    <Route exact path="/" component={Search} test="testing" history={history}/>
+    <Route exact path="/search" component={SearchResults} history={history}/>
     <Route exact path="/profile" component={User} />
     <Route
           path="/login"
@@ -99,6 +99,7 @@ class App extends Component {
               updateUser={this.updateUser}
             />} /> 
     <Route exact path="/signup" component={SignUpForm} />
+    <Route exact path='/slides' component={Carousel} />
 
       {/* <Header />
       <div className="hero is-info is-fullheight">
