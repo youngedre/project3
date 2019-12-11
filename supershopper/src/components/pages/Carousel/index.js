@@ -2,8 +2,8 @@ import "semantic-ui-css/semantic.min.css";
 import "react-multi-carousel/lib/styles.css";
 import UAParser from "ua-parser-js";
 import React, { Fragment } from "react";
-import Simple from "../Simple"
-import Section from "../Section";
+import Simple from "../../Simple"
+import Section from "../../Section";
 import "./style.css";
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.

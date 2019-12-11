@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import LoginForm from "./components/pages/LoginForm";
-import User from "./components/pages/User"
-import Search from "./components/pages/Search"
-import SearchResults from "./components/pages/SearchResult"
+import User from "./components/pages/User/"
+import Search from "./components/pages/Search/"
+import SearchResults from "./components/pages/SearchResults/"
 import { Router, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import history from "./utils/history";
 import SignUpForm from "./components/pages/SignupForm";
 import axios from 'axios'
-import Carousel from './components/pages/Carousel'
 
 class App extends Component {
   constructor() {
@@ -70,7 +69,6 @@ class App extends Component {
               updateUser={this.updateUser}
             />} /> 
     <Route exact path="/signup" component={SignUpForm} />
-    <Route exact path='/slides' component={Carousel} />
       </Router>
     </>
   );
