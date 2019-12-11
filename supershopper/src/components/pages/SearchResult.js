@@ -95,15 +95,12 @@ class DesktopContainer2 extends Component {
             <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
             <br></br>
           <Grid divided="vertically" id='grid'>
-            <Grid.Row columns="3">
+            <Grid.Row columns="2">
               <Grid.Column>
                 <WalmartSearch data={items[0]}/>
               </Grid.Column>
               <Grid.Column>
                 <AmazonSearch  data={items[1]} />
-              </Grid.Column>
-              <Grid.Column>
-                <TargetSearch  data={items[2]} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -179,9 +176,6 @@ class MobileContainer extends Component {
               </Grid.Column>
               <Grid.Column>
                 <AmazonSearch  data={items[1]} />
-              </Grid.Column>
-              <Grid.Column>
-                <TargetSearch  data={items[2]} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
