@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { Grid, Container, Menu, Image } from 'semantic-ui-react';
+import { Grid, Container } from 'semantic-ui-react';
 import ItemSearch from '../ItemSearch';
 import SelectedFoods from '../SelectedFoods'
-import logo from '../../assets/images/logo.png'
 
-const fixedMenuStyle = {
-    backgroundColor: '#ececec',
-    border: '1px solid #ddd',
-    boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
-  };
 
 class Homepage extends Component {
     state = {

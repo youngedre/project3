@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import logo from "../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import './style.css'
 import axios from 'axios'
 

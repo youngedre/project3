@@ -3,7 +3,9 @@ html, body {
 }
 #segmentID {
     background-image: url('../../assets/images/pexels-photo-264489.jpg');
-  background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
  
 }
 
