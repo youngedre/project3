@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import API from "../../utils/Api";
-import AmazonSearch from "../AmazonSearch";
+import API from "../../../utils/Api";
+import AmazonSearch from "../../AmazonSearch";
 import {
   Container,
   Grid,
@@ -11,8 +11,8 @@ import {
   Segment,
   Visibility
 } from "semantic-ui-react";
-import WalmartSearch from "../WalmartSearch";
-import TargetSearch from "../TargetSearch";
+import WalmartSearch from "../../WalmartSearch";
+import TargetSearch from "../../TargetSearch";
 import "./search.css";
 const getWidth = () => {
   const isSSR = typeof window === "undefined";
@@ -49,7 +49,7 @@ class DesktopContainer2 extends Component {
   }
   
   componentDidMount() {
-      API.search(this.state.searchValue).then(result => {
+      API.search(this.props.location.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
         this.setState({ items }); //, function () {console.log(this.state.items)});
@@ -118,12 +118,15 @@ class DesktopContainer2 extends Component {
             <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
             <br></br>
           <Grid divided="vertically" id='grid'>
-            <Grid.Row columns="2">
+            <Grid.Row columns="3">
               <Grid.Column>
                 <WalmartSearch data={items[0]}/>
               </Grid.Column>
               <Grid.Column>
                 <AmazonSearch  data={items[1]} />
+              </Grid.Column>
+              <Grid.Column>
+                <TargetSearch data={items[2]} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
