@@ -1,11 +1,7 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-// import ItemSearch from '../ItemSearch';
 import API from "../../utils/Api";
-// import AmazonSearch from '../AmazonSearch'
-// import WalmartSearch from '../WalmartSearch'
-import { Button, Container, Card, Divider, Grid, Header, Input, Icon, ImageBackground, List, Menu, Table, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react'
-import GlobalHeader from '../Header/Header'
+import { Card, Table } from 'semantic-ui-react'
+
 
 class TargetSearch extends Component {
 state = {
@@ -38,15 +34,12 @@ state = {
 
   render() {
     
-    const { children } = this.props
-    // const { fixed, items } = this.state
-    const targetItems = this.props.data || [] //items.filter(item => item.storeSource === 'Amazon')
+    const targetItems = this.props.data || [] 
     const targetItemRows = targetItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>
         <Table.Cell className="right aligned">{item.price}</Table.Cell>
         <Table.Cell className="right aligned" ><a href={item.itemLink} rel='noopener noreferrer' target='_blank'><img src={item.image} border = '0' alt='' height='150px' width='100px'/></a></Table.Cell>
-        {/* <Table.Cell className="right aligned">{item.storeSource}</Table.Cell> */}
       </Table.Row>
     ));
 return (
