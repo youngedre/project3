@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
-import logo from "../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import axios from 'axios'
 
 

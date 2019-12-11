@@ -22,7 +22,7 @@ async function targetSearch(searchBarTerm) {
         await page.evaluate(_viewportHeight => {
             window.scrollBy(0, _viewportHeight);
         }, viewportHeight);
-        await wait(7000);
+        await wait(7);
         viewportIncr = viewportIncr + viewportHeight;
     }
     await page.evaluate(_ => {

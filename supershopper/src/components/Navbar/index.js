@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from 'react-bootstrap/Navbar'
 import './style.css'
@@ -31,9 +30,6 @@ class Header extends Component {
 
     render() {
         const loggedIn = this.props.loggedIn;
-
-        const firstName = this.props.firstName;
-        const lastName = this.props.lastName;
         console.log('navbar render, props: ')
         console.log(this.props);
         
