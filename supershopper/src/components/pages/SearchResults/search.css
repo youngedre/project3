@@ -1,0 +1,33 @@
+html, body {
+    overflow: auto;
+}
+#segmentID {
+    background-image: url('../../../assets/images/pexels-photo-264489.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+ 
+}
+
+#headerID{
+    background-color:  white;
+}
+
+#title {
+    text-shadow: 2px 2px 8px rgba(139, 0, 0, 0.65);
+    /* text-shadow: 0 0 3px #FF0000, 0 0 5px #FF0000; */
+
+}
+#subtitle {
+    text-shadow: 2px 2px 8px #5af211;
+    /* text-shadow: 0 0 1px #5af211, 0 0 5px #5af211; */
+
+}
+
+#searchcontainer {
+    width: 200;
+}
+
+#grid {
+    margin-left: 5px;
+}

@@ -4,27 +4,12 @@ import API from "../../utils/Api";
 
 const MATCHING_ITEM_LIMIT = 10; 
 
-//!!!!!!!!!!!!KEEP THIS FUNCTION TO PREVENT OVERLOAD!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~
-const debounce = (fn, delay) => {
-  let timer = null;
-  return function(...args) {
-    const context = this;
-    timer && clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(context, args), delay);
-  };
-};
-
 class ItemSearch extends React.Component {
   state = {
     items: [],
     showRemoveIcon: false,
     searchValue: ""
   };
-
-  constructor(props) {
-    super(props);
-    this.fetchFoods = debounce(this.fetchFoods, 1000);
-  }
 
   handleSearchChange = (e) => {
     const value = e.target.value;
@@ -42,11 +27,11 @@ class ItemSearch extends React.Component {
       this.setState({
         showRemoveIcon: true
       });
-      this.fetchFoods(value);
+      this.fetchItems(value);
     }
   }
 
-  fetchFoods = (query) => {
+  fetchItems = (query) => {
     // console.log("show me that you work")
     API.search(query, result => {
       const items = result.slice(0, MATCHING_ITEM_LIMIT)
