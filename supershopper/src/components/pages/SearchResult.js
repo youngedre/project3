@@ -108,45 +108,30 @@ class DesktopContainer2 extends Component {
             onBottomPassedReverse={this.hideFixedMenu}
           >
             <Segment
-              id="segmentID"
-              textAlign="center"
-              style={{ minHeight: "100vh", padding: "1em 0em" }}
-              vertical
+            id="segmentID"
+            textAlign="center"
+            style={{ minHeight: "100vh", padding: "1em 0em"}}
+            vertical
             >
-              <HomepageHeading />
-              <Container fluid style={{ marginTop: "4.6em", width: "80vw" }}>
-                <Input
-                  fluid
-                  value={
-                    this.state.searchValue
-                  }
-                  onChange={this.handleSearchChange}
-                  onKeyPress={this.fetchItems}
-                  className="ui input"
-                  placeholder="Search..."
-                />
-                <br></br>
-                <Grid divided="vertically" id="grid">
-                  <Grid.Row columns="2">
-                    <Grid.Column>
-                      <WalmartSearch data={items[0]} />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <AmazonSearch data={items[1]} />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row columns="2">
-                    <Grid.Column>
-                      <WalmartSearch data={items[0]} />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <AmazonSearch data={items[1]} />
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              </Container>
-            </Segment>
-          </Visibility>
+            <HomepageHeading />
+            <Container fluid style={{ marginTop: '4.6em', width: '80vw'} }>
+            <Input fluid value={this.state.searchValue} onChange={this.handleSearchChange} onKeyPress={this.fetchItems} className="ui input" placeholder="Search..." /> 
+            <br></br>
+          <Grid divided="vertically" id='grid'>
+            <Grid.Row columns="2">
+              <Grid.Column>
+                <WalmartSearch data={items[0]}/>
+              </Grid.Column>
+              <Grid.Column>
+                <AmazonSearch  data={items[1]} />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+         
+          </Segment>
+          
+        </Visibility>
 
           {children}
         </div>
