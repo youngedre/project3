@@ -34,8 +34,8 @@ state = {
 
   render() {
     let targetItemRows
-    const targetItems = this.props.data || []
-    if(targetItems === []){
+    const targetItems = this.props.data || 0
+    if(targetItems === 0){
       console.log("target is empty")
     }
     if(targetItems.length > 0){
