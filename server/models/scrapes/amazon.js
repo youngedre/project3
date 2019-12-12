@@ -44,7 +44,7 @@ async function amazonSearch(searchBarTerm) {
           itemLink = item.querySelector(linkTextSearch) === (undefined || null) ? 'failedLink' : item.querySelector(linkTextSearch).href.trim();
         };
         //let itemColTest = document.querySelectorAll('div.sg-col-4-of-12') ? 1 : 2;
-        const allItems = document.querySelectorAll('div.sg-col.s-result-item')
+        const allItems = document.querySelectorAll('div.sg-col.s-result-item span[cel_widget_id=SEARCH_RESULTS-SEARCH_RESULTS]')
         //document.querySelectorAll('div.sg-col-4-of-12') ? ;
         for(b of allItems){
             grabInfo(b)

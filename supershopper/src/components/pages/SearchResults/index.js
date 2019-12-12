@@ -42,10 +42,11 @@ HomepageHeading.propTypes = {
 
 
 class DesktopContainer2 extends Component {
-  componentWillMount(){ 
-    this.setState({searchValue: this.props.location.state.searchValue})
-    ||
-    this.setState({searchValue: ""})
+  componentWillReceiveProps(){
+    if(this.props.this.props.location.state.searchValue){
+    this.setState({searchValue: this.props.location.state.searchValue})}
+    else{
+    this.setState({searchValue: ""})}
   }
   
   componentDidMount() {
@@ -185,9 +186,9 @@ class MobileContainer extends Component {
   render() {
     const { children } = this.props;
     const { items } = this.state;
-    console.log("my props ", this.props.location.state.searchValue);
+    //console.log("my props ", this.props.location.state.searchValue);
     return (
-      <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
+      <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
         <Segment
           inverted
           textAlign="center"
@@ -199,9 +200,9 @@ class MobileContainer extends Component {
             <Input
               fluid
               value={
-                this.props.location.state.searchValue
-                  ? this.props.location.state.searchValue
-                  : this.state.searchValue
+                // this.props.location.state.searchValue
+                //   ? this.props.location.state.searchValue
+                 this.state.searchValue
               }
               onChange={this.handleSearchChange}
               onKeyPress={this.fetchItems}
