@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const mongoose = require('mongoose');
 const db = require("../StoreSearch");
-mongoose.connect("mongodb://localhost/ShoppingDatabase", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 function wait (ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms))
