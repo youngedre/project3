@@ -10,7 +10,10 @@ function wait (ms) {
 async function walmartSearch(searchBarTerm) {
   try{
     const website = 'https://www.walmart.com';
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args:[
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]});
     const page = await browser.newPage();
     await page.goto(website+'/search/?query='+searchBarTerm, {waitUntil: 'load'});
     const bodyHandle = await page.$('body');

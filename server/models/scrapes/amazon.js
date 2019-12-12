@@ -9,7 +9,10 @@ function wait (ms) {
 
 async function amazonSearch(searchBarTerm) {
     try{
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args:[
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+      ]});
     const page = await browser.newPage();
     let url = 'http://www.amazon.com/s?k='+searchBarTerm
     await page.goto(url, {waitUntil: 'load'});

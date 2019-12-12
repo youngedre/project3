@@ -26,18 +26,18 @@ module.exports = {
       // console.log("DB Amazon count: ", amazonFiltered)
       // console.log("DB Walmart count: ", walmartFiltered)
       let prom1 = new Promise ((resolve, reject) => {
-        let testWalmart = walmartFiltered.length<15 ? searchFunctions.walmartSearch(value) : walmartFiltered;
+        let testWalmart = walmartFiltered.length<10 ? searchFunctions.walmartSearch(value) : walmartFiltered;
         resolve(testWalmart)
         reject([]) 
         })
 
       let prom2 = new Promise ((resolve, reject) => {
-        let testAmazon = amazonFiltered.length<15 ? searchFunctions.amazonSearch(value) : amazonFiltered
+        let testAmazon = amazonFiltered.length<10 ? searchFunctions.amazonSearch(value) : amazonFiltered
         resolve(testAmazon)
         reject([]) 
       })
       let prom3 = new Promise ((resolve, reject) => {
-        let testTarget = targetFiltered.length<15 ? searchFunctions.targetSearch(value) : targetFiltered
+        let testTarget = targetFiltered.length<10 ? searchFunctions.targetSearch(value) : targetFiltered
         resolve(testTarget)
         reject([]) 
       })

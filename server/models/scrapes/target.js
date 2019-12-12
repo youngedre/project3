@@ -10,7 +10,12 @@ function wait (ms) {
 async function targetSearch(searchBarTerm) {
   try{
     const website = 'https://www.target.com';
-    const browser = await puppeteer.launch({});
+    const browser = await puppeteer.launch({
+      args:[
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+      ]
+    });
     const page = await browser.newPage();
     await page.goto(website+'/s?searchTerm='+searchBarTerm, {waitUntil: 'load', timeout: 0});
     const bodyHandle = await page.$('body');
