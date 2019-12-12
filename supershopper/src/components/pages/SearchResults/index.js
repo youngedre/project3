@@ -42,7 +42,7 @@ HomepageHeading.propTypes = {
 
 
 class DesktopContainer2 extends Component {
-  componentWillMount(){
+  componentWillMount(){ 
     this.setState({searchValue: this.props.location.state.searchValue})
     ||
     this.setState({searchValue: ""})
