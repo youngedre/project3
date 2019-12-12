@@ -1,18 +1,16 @@
 import React from "react";
 import { Card, Icon, Table } from 'semantic-ui-react';
 
-export default function SelectedFoods(props) {
-  const { foods } = props;
+export default function SelectedItems(props) {
+  const { items } = [];
 
-  const foodRows = foods.map((food, idx) => (
-    <Table.Row clickable="true" key={idx} onClick={() => props.onFoodClick(idx)}>
-      <Table.Cell>{food.description}</Table.Cell>
-      <Table.Cell textAlign='right'>{food.kcal}</Table.Cell>
-      <Table.Cell textAlign='right'>{food.protein_g}</Table.Cell>
-      <Table.Cell textAlign='right'>{Number(food.fat_g).toFixed(2)}</Table.Cell>
-      <Table.Cell textAlign='right'>{food.carbohydrate_g}</Table.Cell>
+  const itemRows = 
+   <Table.Row clickable="true">
+      <Table.Cell> </Table.Cell>
+      <Table.Cell textAlign='right'> </Table.Cell>
+      <Table.Cell textAlign='right'> </Table.Cell>
     </Table.Row>
-  ));
+  ;
 
   return (
     <Card fluid color='red' style={{ marginTop: '3.6em' }}>
@@ -27,21 +25,15 @@ export default function SelectedFoods(props) {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {foodRows}
+            {itemRows}
           </Table.Body>
         </Table>
       </Card.Content>
       <Card.Content extra>
-        {foodRows.length === 0 && <><Icon name='search' />No Recent Searches</>}
-        {foodRows.length === 1 && <><Icon name='search' />1 Recent</>}
-        {foodRows.length > 1 && <><Icon name='search' />{foodRows.length} Recent Searches</>}
+        {itemRows.length === 0 && <><Icon name='search' />No Recent Searches</>}
+        {itemRows.length === 1 && <><Icon name='search' />1 Recent</>}
+        {itemRows.length > 1 && <><Icon name='search' />{itemRows.length} Recent Searches</>}
       </Card.Content>
     </Card>
   );
 }
-
-// function sum(foods, prop) {
-//   return foods
-//     .reduce((memo, food) => parseFloat(food[prop], 10) + memo, 0.0)
-//     .toFixed(2);
-// }
