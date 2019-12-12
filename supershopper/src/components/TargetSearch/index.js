@@ -4,10 +4,13 @@ import { Card, Table } from 'semantic-ui-react'
 
 
 class TargetSearch extends Component {
-state = {
-    items: [],
-    searchValue: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      searchValue: ""
+    };
+  }
   handleSearchChange = (e) => {
     const value = e.target.value;
 
@@ -34,10 +37,7 @@ state = {
 
   render() {
     let targetItemRows
-    const targetItems = this.props.data || 0
-    if(targetItems === 0){
-      console.log("target is empty")
-    }
+    const targetItems = this.props.data || []
     if(targetItems.length > 0){
     targetItemRows = targetItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
