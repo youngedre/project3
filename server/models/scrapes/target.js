@@ -22,13 +22,13 @@ async function targetSearch(searchBarTerm) {
         await page.evaluate(_viewportHeight => {
             window.scrollBy(0, _viewportHeight);
         }, viewportHeight);
-        await wait(20);
+        await wait(400);
         viewportIncr = viewportIncr + viewportHeight;
     }
     await page.evaluate(_ => {
         window.scrollTo(0, 0);
     });
-    await wait(4000);
+    await wait(40);
 
 const titleArray = await page.$$eval('li.h-display-flex.Col-favj32-0 div.h-flex-direction-col a.h-display-block',e => e.map(el => el.innerText.trim()))
 const priceArray = await page.$$eval('li.h-display-flex.Col-favj32-0 div.styles__StyledPricePromoWrapper-e5kry1-13 span.h-text-bs',e=>e.map(el => el.innerText.trim()))
@@ -83,7 +83,6 @@ const imgArray = await page.$$eval('li.h-display-flex.Col-favj32-0 div.Images__I
   // return allItems
   // // return data;
   // }, searchBarTerm);
-  console.log("Target array: ", allItems)
   // for (let k=0; k<Math.min(items.length, 15); k++) {
   //   try{
   //     if((items[k].title !== 'Failed') && (items[k].price.charAt(0) === '$')){db.create(items[k]);}}

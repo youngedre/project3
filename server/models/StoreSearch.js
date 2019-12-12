@@ -30,7 +30,7 @@ var StoreSchema = new Schema({
   timeScraped: {
     type: Date,
     default: Date.now,
-    expires: '2h'
+    expires: '8h'
   },
   searchedTerm: {
     type: String,
