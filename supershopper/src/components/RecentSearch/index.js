@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Icon, Table } from 'semantic-ui-react';
 
 export default function SelectedItems(props) {
-  const { items } = [];
 
   const itemRows = 
    <Table.Row clickable="true">

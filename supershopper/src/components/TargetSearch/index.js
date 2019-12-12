@@ -35,6 +35,9 @@ state = {
   render() {
     let targetItemRows
     const targetItems = this.props.data || []
+    if(targetItems === []){
+      console.log("target is empty")
+    }
     if(targetItems.length > 0){
     targetItemRows = targetItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
