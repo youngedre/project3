@@ -41,17 +41,6 @@ HomepageHeading.propTypes = {
 };
 
 
-<<<<<<< Updated upstream
-class DesktopContainer2 extends Component {
-  componentWillMount(){ 
-    // this.setState({searchValue: this.props.location.state.searchValue})
-
-    this.setState({searchValue: ""})
-  }
-  
-  componentDidMount() {
-      API.search(this.state.searchValue).then(result => {
-=======
 class DesktopContainer extends Component {
   componentWillReceiveProps(){
     if(this.props.location.state.searchValue){
@@ -63,7 +52,6 @@ class DesktopContainer extends Component {
   componentDidMount() {
     if(this.props.location.state.searchValue){
       API.search(this.props.location.state.searchValue).then(result => {
->>>>>>> Stashed changes
         // console.log(result);
         const items = result;
         this.setState({ items }); //, function () {console.log(this.state.items)});
