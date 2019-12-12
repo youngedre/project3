@@ -68,7 +68,6 @@ class DesktopContainer extends Component {
   render() {
     const { children } = this.props;
     console.log("props ", this.props);
-    const { fixed } = this.state;
 
     console.log("SEARCH STATE ", this.state);
     const handleSearch = e => {
