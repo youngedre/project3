@@ -42,15 +42,14 @@ HomepageHeading.propTypes = {
 
 
 class DesktopContainer2 extends Component {
-  componentWillReceiveProps(){
-    if(this.props.this.props.location.state.searchValue){
-    this.setState({searchValue: this.props.location.state.searchValue})}
-    else{
-    this.setState({searchValue: ""})}
+  componentWillMount(){ 
+    // this.setState({searchValue: this.props.location.state.searchValue})
+
+    this.setState({searchValue: ""})
   }
   
   componentDidMount() {
-      API.search(this.props.location.state.searchValue).then(result => {
+      API.search(this.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
         this.setState({ items }); //, function () {console.log(this.state.items)});
@@ -186,7 +185,7 @@ class MobileContainer extends Component {
   render() {
     const { children } = this.props;
     const { items } = this.state;
-    //console.log("my props ", this.props.location.state.searchValue);
+    // console.log("my props ", this.props.location.state.searchValue);
     return (
       <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
         <Segment
@@ -202,7 +201,7 @@ class MobileContainer extends Component {
               value={
                 // this.props.location.state.searchValue
                 //   ? this.props.location.state.searchValue
-                 this.state.searchValue
+                  this.state.searchValue
               }
               onChange={this.handleSearchChange}
               onKeyPress={this.fetchItems}
