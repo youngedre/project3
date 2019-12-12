@@ -42,15 +42,16 @@ HomepageHeading.propTypes = {
 
 
 class DesktopContainer extends Component {
-  componentWillReceiveProps(){
-    if(this.props.location.state){
-    this.setState({searchValue: this.props.location.state.searchValue})}
-    else{
-    this.setState({searchValue: ""})}
-  }
+  // componentWillReceiveProps(){
+  //   if(this.props.location.state){
+  //   this.setState({searchValue: this.props.location.state.searchValue})}
+  //   else{
+  //   this.setState({searchValue: ""})}
+  // }
   
   componentDidMount() {
     if(this.props.location.state){
+      this.setState({ searchValue: this.props.location.state.searchValue })
       API.search(this.props.location.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
@@ -88,11 +89,10 @@ class DesktopContainer extends Component {
   fetchItems = event => {
     // console.log("show me that you work")
     if (event.key === "Enter"){
-      this.setState({results: false})
       API.search(this.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
-        this.setState({ items, results: true }); //, function () {console.log(this.state.items)});
+        this.setState({ items }); //, function () {console.log(this.state.items)});
       })};
   };
 
