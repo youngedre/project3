@@ -43,14 +43,14 @@ HomepageHeading.propTypes = {
 
 class DesktopContainer extends Component {
   componentWillReceiveProps(){
-    if(this.props.location.state.searchValue){
+    if(this.props.location.state){
     this.setState({searchValue: this.props.location.state.searchValue})}
     else{
     this.setState({searchValue: ""})}
   }
   
   componentDidMount() {
-    if(this.props.location.state.searchValue){
+    if(this.props.location.state){
       API.search(this.props.location.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
