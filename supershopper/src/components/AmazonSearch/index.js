@@ -33,7 +33,7 @@ state = {
 
   render() {
     let amazonItemRows
-    const amazonItems = this.props.data || [] 
+    const amazonItems = this.props.data || 0
     if(amazonItems.length > 0){
       amazonItemRows = amazonItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>

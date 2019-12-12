@@ -15,7 +15,7 @@ class WalmartSearch extends Component {
   render() {
     
     let walmartItemRows;
-    const walmartItems = this.props.data || []
+    const walmartItems = this.props.data || 0
     if(walmartItems.length > 0){
     walmartItemRows = walmartItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
