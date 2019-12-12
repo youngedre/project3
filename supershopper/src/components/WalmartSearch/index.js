@@ -14,15 +14,16 @@ class WalmartSearch extends Component {
 
   render() {
     
-  
+    let walmartItemRows;
     const walmartItems = this.props.data || []
-    const walmartItemRows = walmartItems.slice(0,10).map((item, idx) => (
+    if(walmartItems.length > 0){
+    walmartItemRows = walmartItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>
         <Table.Cell className="right aligned">{item.price}</Table.Cell>
         <Table.Cell className="right aligned" ><a href={item.itemLink} rel='noopener noreferrer' target='_blank'><img src={item.image} border = '0' alt='' height='150px' width='100px'/></a></Table.Cell>
       </Table.Row>
-    ));
+    ))};
 return (
 <>
 <Card fluid color='yellow' style={{ marginBottom: '2em' }}>

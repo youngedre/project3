@@ -33,15 +33,16 @@ state = {
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
-    
-    const targetItems = this.props.data || [] 
-    const targetItemRows = targetItems.slice(0,10).map((item, idx) => (
+    let targetItemRows
+    const targetItems = this.props.data || []
+    if(targetItems.length > 0){
+    targetItemRows = targetItems.slice(0,10).map((item, idx) => (
       <Table.Row key={idx}>
         <Table.Cell className="right aligned">{item.title}</Table.Cell>
         <Table.Cell className="right aligned">{item.price}</Table.Cell>
         <Table.Cell className="right aligned" ><a href={item.itemLink} rel='noopener noreferrer' target='_blank'><img src={item.image} border = '0' alt='' height='150px' width='100px'/></a></Table.Cell>
       </Table.Row>
-    ));
+    ))};
 return (
 <>
 <Card fluid color='yellow' style={{ marginBottom: '2em' }}>
