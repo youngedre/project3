@@ -56,7 +56,7 @@ module.exports = {
       // }else{allResults = allResults.push(amazonFiltered)}
       let mergedResults = []
       mergedResults = allResults.map(arr => mergedResults.concat(arr))
-      console.log("Target: ",mergedResults[2])
+      //console.log("Target: ",mergedResults[2])
       return res.json(mergedResults)
       }
       catch(err){res.status().json(err)};

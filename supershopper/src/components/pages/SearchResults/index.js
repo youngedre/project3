@@ -187,7 +187,7 @@ class MobileContainer extends Component {
     const { items } = this.state;
     // console.log("my props ", this.props.location.state.searchValue);
     return (
-      <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.maxWidth}>
+      <Responsive getWidth={getWidth} maxWidth={Responsive.onlyTablet.minWidth}>
         <Segment
           inverted
           textAlign="center"
