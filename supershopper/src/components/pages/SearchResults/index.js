@@ -41,6 +41,7 @@ HomepageHeading.propTypes = {
 };
 
 
+<<<<<<< Updated upstream
 class DesktopContainer2 extends Component {
   componentWillMount(){ 
     // this.setState({searchValue: this.props.location.state.searchValue})
@@ -50,12 +51,25 @@ class DesktopContainer2 extends Component {
   
   componentDidMount() {
       API.search(this.state.searchValue).then(result => {
+=======
+class DesktopContainer extends Component {
+  componentWillReceiveProps(){
+    if(this.props.location.state.searchValue){
+    this.setState({searchValue: this.props.location.state.searchValue})}
+    else{
+    this.setState({searchValue: ""})}
+  }
+  
+  componentDidMount() {
+    if(this.props.location.state.searchValue){
+      API.search(this.props.location.state.searchValue).then(result => {
+>>>>>>> Stashed changes
         // console.log(result);
         const items = result;
         this.setState({ items }); //, function () {console.log(this.state.items)});
       });
     
-    }
+    }}
   state = {
     items: [],
     searchValue: ""
@@ -143,7 +157,7 @@ class DesktopContainer2 extends Component {
   }
 }
 
-DesktopContainer2.propTypes = {
+DesktopContainer.propTypes = {
   children: PropTypes.node
 };
 
@@ -239,7 +253,7 @@ const ResponsiveContainer = props => {
   console.log("props search result :", props);
   return (
     <div>
-      <DesktopContainer2 getWidth={getWidth} {...props} />
+      <DesktopContainer getWidth={getWidth} {...props} />
       <MobileContainer getWidth={getWidth} {...props} />
     </div>
   );
