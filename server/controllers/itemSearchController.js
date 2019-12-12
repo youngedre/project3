@@ -28,18 +28,18 @@ module.exports = {
       let prom1 = new Promise ((resolve, reject) => {
         let testWalmart = walmartFiltered.length<15 ? searchFunctions.walmartSearch(value) : walmartFiltered;
         resolve(testWalmart)
-        reject("Failed to search") 
+        reject([]) 
         })
 
       let prom2 = new Promise ((resolve, reject) => {
         let testAmazon = amazonFiltered.length<15 ? searchFunctions.amazonSearch(value) : amazonFiltered
         resolve(testAmazon)
-        reject("Failed to search") 
+        reject([]) 
       })
       let prom3 = new Promise ((resolve, reject) => {
         let testTarget = targetFiltered.length<15 ? searchFunctions.targetSearch(value) : targetFiltered
         resolve(testTarget)
-        reject("Failed to search") 
+        reject([]) 
       })
 
       let allResults = await Promise.all([prom1, prom2, prom3]);
