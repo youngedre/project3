@@ -60,7 +60,7 @@ class DesktopContainer extends Component {
     }}
   state = {
     items: [],
-    searchValue: ""
+    searchValue: "",
   };
   handleKeyPress = event => {
     if (event.key === "Enter") {
@@ -87,12 +87,13 @@ class DesktopContainer extends Component {
   };
   fetchItems = event => {
     // console.log("show me that you work")
-    if (event.key === "Enter")
+    if (event.key === "Enter"){
+      this.setState({results: false})
       API.search(this.state.searchValue).then(result => {
         // console.log(result);
         const items = result;
-        this.setState({ items }); //, function () {console.log(this.state.items)});
-      });
+        this.setState({ items, results: true }); //, function () {console.log(this.state.items)});
+      })};
   };
 
   hideFixedMenu = () => this.setState({ fixed: false });
