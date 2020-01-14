@@ -1,6 +1,6 @@
 # Super Holiday Shopper
 
-Super Holiday Shopper is a react app that simplifies the shopping experence for all!
+Super Holiday Shopper is a react app that simplifies the shopping experience for all!
 
 By using puppeteer Super Holiday Shopper scrapes data from various shopping websites such as Amazon, Target, and Walmart. 
 These scrapes are entered into a database for all users to be able to see upon search for their product it will present 10 items from each of the websites, if it isn't in the database a live scrape will occur to feed you the results within seconds. 
