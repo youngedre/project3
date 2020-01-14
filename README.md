@@ -25,3 +25,5 @@ and more
 -Front End & React: William Whitted
 -Back End & Server: Michael Dubois
 With both members assisting with more difficult issues to ensure production speed
+
+test the super holiday shopper at: https://peaceful-bastion-36664.herokuapp.com/
